@@ -12,6 +12,7 @@ function App() {
   const router = createBrowserRouter([
     {
       index: true,
+      path: "/",
       element: (
         <div className="w-screen h-screen">
           <Header />
@@ -25,7 +26,7 @@ function App() {
       path: "*",
       element: <div>Error</div>,
     },
-  ])
+  ], { basename: "/portfolio" })
 
   return (
     <div className="bg-neutral-900 custom-pointer">
