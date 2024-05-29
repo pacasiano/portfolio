@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  @apply bg-neutral-900 text-white cursor-none select-none font-mono
+}
+
+* {
+  cursor: none;
+}
+
+/* Custom cursor styles */
+.custom-cursor {
+  @apply fixed w-[20px] h-[20px] border-2 border-white rounded-full bg-transparent pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-300 ease-out;
+}
+
+/* Hovered state */
+.custom-cursor-hovered {
+  @apply w-[40px] h-[40px];
+}
+
+.custom-cursor-inner {
+  @apply w-[6px] h-[6px] bg-white rounded-full fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+}
