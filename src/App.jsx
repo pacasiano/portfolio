@@ -26,7 +26,7 @@ function App() {
       path: "*",
       element: <div>Error</div>,
     },
-  ], { basename: "/portfolio" })
+  ], { basename: "/cephas" })
 
   return (
     <div className="bg-neutral-900 custom-pointer">
