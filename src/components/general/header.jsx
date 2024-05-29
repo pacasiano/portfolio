@@ -1,6 +1,7 @@
 
 import { useLocation } from 'react-router-dom'
 import Button from "./button"
+import GlitchText from './glitch'
 
 export default function Header() {
 
@@ -10,7 +11,7 @@ export default function Header() {
         <div className="fixed top-0 w-screen pt-4 px-6 flex flex-row justify-between items-center ">   
 
             <div className='text-2xl font-bold text-white flex flex-row gap-1 items-center'>
-                <p className='text-[#7964be] text-md'>{"<"}</p><div className='text-3xl'>Cephas</div>
+                <p className='text-[#7964be] text-md'>{"<"}</p><div className='text-3xl'><GlitchText text="Cephas" /></div>
             </div>
 
             <div className='text-md font-bold flex flex-row justify-center items-center gap-2'>
