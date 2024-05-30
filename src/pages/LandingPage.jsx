@@ -37,11 +37,11 @@ function LandingPage() {
             <StartView />
         </div>
 
-        <div id="Works" className="w-full h-screen flex flex-col justify-center items-center bg-[#181329]">
+        <div id="Works" className="w-full min-h-screen flex flex-col justify-center items-center bg-[#181329]">
             <WorksView />
         </div>
 
-        <div id="About" className="w-full h-screen flex flex-col justify-center items-center">
+        <div id="About" className="w-full min-h-screen flex flex-col justify-center items-center">
             <AboutView />
         </div>
         </>
