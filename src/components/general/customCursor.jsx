@@ -4,7 +4,7 @@ import { HoverContext } from "../../context/HoverContext"
 
 
 const CustomCursor = () => {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [position, setPosition] = useState({ x: -10, y: -10 });
     const [clicked, setClicked] = useState(false);
     const { isHovered } = useContext(HoverContext);
 
