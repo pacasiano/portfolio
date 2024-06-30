@@ -1,4 +1,4 @@
-// src/CustomCursor.js
+
 import { useEffect, useState, useContext } from 'react';
 import { HoverContext } from "../../context/HoverContext"
 
@@ -34,10 +34,10 @@ const CustomCursor = () => {
     }, []);
 
     return (
-        <div>
-            <div className={`custom-cursor ${isHovered ? 'custom-cursor-hovered' : ''}`} style={{ left: `${position.x}px`, top: `${position.y}px` }}></div>
+        <>
+            <div className={`custom-cursor ${isHovered ? 'w-[40px] h-[40px]' : 'w-[20px] h-[20px]'} `} style={{ left: `${position.x}px`, top: `${position.y}px` }}></div>
             {!clicked && <div className="custom-cursor-inner" style={{ left: `${position.x}px`, top: `${position.y}px` }}></div>}
-        </div>
+        </>
     );
 };
 

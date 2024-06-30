@@ -8,8 +8,12 @@ const Button = ({ to, className, children }) => {
 
     return (
         <div className="">
-            <Link to={to} className={className} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-                {children}
+            <Link
+            to={to}
+            className={className}
+            onMouseOver={() => setIsHovered(true)}
+            onMouseOut={() => setIsHovered(false)}>
+            {children}
             </Link>
         </div>
     );

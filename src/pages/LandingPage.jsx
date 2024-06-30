@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useRef } from 'react';
 
 // backgrounds
-import Background from "../assets/bg.webp";
+import Background from "../assets/bg3.webp";
 
 // views
 import StartView from "../components/LandingPageViews/startView";
@@ -32,19 +32,21 @@ function LandingPage() {
     }, [location]);
 
     return (
-        <>
-        <div id="Start" className="w-full h-screen bg-cover bg-center" style={{backgroundImage: `url(${Background})`}}>
-            <StartView />
-        </div>
+        <div>
+            <div id="Start" className="w-full h-screen bg-cover bg-center mix-blend-normal" style={{backgroundImage: `url(${Background})`}}>
+                <div className='w-full h-screen bg-black/60'>
+                    <StartView />
+                </div>
+            </div>
 
-        <div id="Works" className="w-full min-h-screen flex flex-col justify-center items-center bg-[#181329]">
-            <WorksView />
-        </div>
+            <div id="Works" className="w-full min-h-screen flex flex-col justify-center items-center bg-[#181329]">
+                <WorksView />
+            </div>
 
-        <div id="About" className="w-full min-h-screen flex flex-col justify-center items-center">
-            <AboutView />
+            <div id="About" className="w-full min-h-screen flex flex-col justify-center items-center">
+                <AboutView />
+            </div>
         </div>
-        </>
     )
 }
 
