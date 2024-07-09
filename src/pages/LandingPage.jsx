@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useRef } from 'react';
 
 // backgrounds
-import Background from "../assets/bg3.webp";
+import Background from "../assets/bgfinal.jpg";
 
 // views
 import StartView from "../components/LandingPageViews/startView";
@@ -39,7 +39,7 @@ function LandingPage() {
                 </div>
             </div>
 
-            <div id="Works" className="w-full min-h-screen flex flex-col justify-center items-center bg-[#181329]">
+            <div id="Works" className="w-full min-h-screen flex flex-col justify-center items-center bg-[#100c20]">
                 <WorksView />
             </div>
 

@@ -17,23 +17,26 @@ class AboutMe {
     
     workExperience() {
         return ([
-        { "year-year": "none" }
+        { "2024-current": "ARISEN Intern" }
         ]);
     }
     
     education() {
         return ([
-        {"year-current": "Ateneo de Davao University"},
-        {"year-year": "San Pedro College Davao City"},
-        {"year-year": "ABD Educational Development Center"},
-        {"year-year": "Notre Dame of Kidapawan City College"},
+        {"2020-current": "Ateneo de Davao University"},
+        {"2018-2020": "San Pedro College Davao City"},
+        {"2015-2018": "ABD Educational Development Center"},
         ]);
     }
     
     skills() {
-        return ([
-        "HTML/CSS/JS"
-        ]);
+        return [
+            "HTML", "CSS", "JavaScript", "Vue.js", "Tailwind CSS", 
+            "React.js", "Next.js", "Laravel", "C++", "Python",
+            "Node.js", "Express.js", "Django", "Wordpress", "Php",
+            "MySQL", "PostgreSQL", "Git", "Figma", "Lightroom",
+            "Photography", "Videography"
+        ];
     }
 }
 `;
@@ -41,7 +44,7 @@ class AboutMe {
     return (
         <div className="relative w-full h-full flex flex-col justify-center items-center py-36">
 
-            <div className="absolute flex flex-col justify-center items-center top-0 left-1/3">
+            <div className="absolute flex flex-col justify-center items-center top-0 -translate-x-[150px]">
                 <div className="bg-[#54438b] h-[150px] w-1"></div>
             </div>
 

@@ -71,7 +71,7 @@ const GlitchText = ({ texts }) => {
 
     useEffect(() => {
         const glitchInterval = 5000; // Interval between glitches
-        const glitchDuration = 1200; // Duration of each glitch effect
+        const glitchDuration = 2000; // Duration of each glitch effect
 
         const interval = setInterval(() => {
             setIsGlitching(true);
@@ -120,7 +120,7 @@ const GlitchText = ({ texts }) => {
     };
 
     return (
-        <span className={`glitch-text ${isGlitching ? 'glitching' : ''}`} data-text={texts[currentTextIndex]}>
+        <span className={`glitch-text transition-all ${isGlitching ? 'glitching' : ''}`} data-text={texts[currentTextIndex]}>
             {displayText}
         </span>
     );
