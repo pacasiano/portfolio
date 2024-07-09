@@ -29,7 +29,7 @@ function App() {
   ], { basename: "/portfolio" })
 
   return (
-    <div className="bg-neutral-900 custom-pointer">
+    <div className="bg-neutral-900">
       <RouterProvider router={router} />
     </div>
   )

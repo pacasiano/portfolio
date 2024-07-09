@@ -5,8 +5,11 @@
 
 @layer components {
 
+
 html, body, #root {
-    @apply bg-neutral-900 text-white select-none font-mono
+    @apply bg-neutral-900 text-white select-none font-mono;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
 /* * {
