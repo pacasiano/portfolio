@@ -7,8 +7,8 @@ const WorkCard = ({ title, description, image, link }) => {
 return (
 <>
     <Link to={link} className="block relative w-full max-w-xs rounded-xl shadow-lg">
-    <div className="relative w-full h-auto rounded-xl overflow-hidden">
-            <img src={image} alt={title} className="w-full h-auto object-cover rounded-xl" />
+    <div className="relative min-w-full rounded-xl overflow-hidden">
+            <img src={image} alt={title} className="min-w-full min-h-full object-cover rounded-xl resize-none" />
             <div className="absolute inset-0 bg-black/30 rounded-xl"></div>
         </div>
         <div className="absolute inset-0 -left-20 flex flex-col justify-end p-4">

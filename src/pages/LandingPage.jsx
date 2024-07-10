@@ -33,7 +33,7 @@ function LandingPage() {
 
     return (
         <div>
-            <div id="Start" className="w-full h-screen bg-cover bg-center mix-blend-normal" style={{backgroundImage: `url(${Background})`}}>
+            <div id="Start" className="w-full h-screen bg-cover bg-center mix-blend-normal overflow-hidden" style={{backgroundImage: `url(${Background})`}}>
                 <div className='w-full h-screen bg-black/60'>
                     <StartView />
                 </div>
