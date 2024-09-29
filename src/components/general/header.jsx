@@ -1,6 +1,5 @@
 
 import { Link, useLocation } from 'react-router-dom'
-import GlitchText from './glitch'
 import { useState, useEffect } from 'react'
 
 export default function Header() {
@@ -29,7 +28,7 @@ export default function Header() {
             <div className='absolute shadow-black shadow-2xl w-full h-full -translate-y-[60px]' />
 
             <div className='text-2xl font-bold text-white flex flex-row gap-1 items-center pl-5'>
-                <p className='text-[#7964be] text-md'>{"<"}</p><div className='text-xl md:text-3xl'><GlitchText texts={["Cephas"]} /></div>
+                <p className='text-[#7964be] text-md'>{"<"}</p><div className='text-xl md:text-3xl pl-2'>peter casiano</div>
             </div>
 
             <div className='text-md font-bold flex flex-row justify-center items-center gap-2 pr-5'>

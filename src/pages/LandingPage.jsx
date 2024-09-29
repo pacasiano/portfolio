@@ -39,7 +39,7 @@ function LandingPage() {
                 </div>
             </div>
 
-            <div id="Works" className="w-full min-h-screen flex flex-col justify-center items-center bg-[#100c20]">
+            <div id="Works" className="relative w-full min-h-screen flex flex-col justify-center items-center bg-[#100c20]">
                 <WorksView />
             </div>
 

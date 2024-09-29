@@ -3,11 +3,12 @@ import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 // eslint-disable-next-line no-unused-vars
 import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useMemo } from 'react';
-
+import { useRef } from 'react';
+import { motion, useInView } from "framer-motion";
 
 export default function AboutView() {
 
-const codeString = `
+    const codeString = `
 class AboutMe {
     constructor() {
         this.name = "Peter Andre Casiano";
@@ -45,13 +46,17 @@ class AboutMe {
 
     const memoizedHighlighter = useMemo(
         () => (
-        <SyntaxHighlighter language="javascript" style={okaidia} showLineNumbers className="w-[90%] z-10 select-text">
-            {codeString}
-        </SyntaxHighlighter>
+            <SyntaxHighlighter language="javascript" style={okaidia} showLineNumbers className="select-text">
+                {codeString}
+            </SyntaxHighlighter>
         ),
         [codeString]
     );
 
+    const ref = useRef(null);
+    const isInView = useInView(ref, { 
+        once: true,
+     });  // Animates only the first time it's in view
 
     return (
         <div className="relative w-full h-full flex flex-col justify-center items-center py-36 overflow-hidden">
@@ -63,7 +68,20 @@ class AboutMe {
             {/* <p className="absolute text-[55vh] font-bold text-[#9f9f9f] z-0">About</p> */}
             <p className="absolute text-9xl font-bold text-[#9f9f9f] top-14 left-11 -rotate-12 z-0">About</p>
             <p className="absolute text-9xl font-bold text-[#9f9f9f] right-8 bottom-10 -rotate-6 z-0 overflow-hidden">About</p>
-            {memoizedHighlighter}
+
+            <div className='w-[70%] z-10 select-text'>
+                <motion.div
+                    ref={ref}
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}} // Only animate if in view
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                >   
+                    <div className="w-full">
+                        {memoizedHighlighter}
+                    </div>
+                </motion.div>
+            </div>
+
         </div>
     )
 }
