@@ -12,21 +12,20 @@ export default function AboutView() {
 class AboutMe {
     constructor() {
         this.name = "Peter Andre Casiano";
-        this.age = 21;
         this.location = "Davao City";
-        this.occupation = "Student";
+        this.occupation = "Unemployed";
         this.email = "pacasiano@icloud.com";
     }
     
     workExperience() {
         return ([
-        { "2024-current": "ARISEN Intern" }
+        { "2024-2025": "ARISEN Intern" }
         ]);
     }
     
     education() {
         return ([
-        {"2020-current": "Ateneo de Davao University"},
+        {"2020-2025": "Ateneo de Davao University"},
         {"2018-2020": "San Pedro College Davao City"},
         {"2015-2018": "ABD Educational Development Center"},
         ]);
@@ -34,11 +33,13 @@ class AboutMe {
     
     skills() {
         return [
-            "HTML", "CSS", "JavaScript", "Vue.js", "Tailwind CSS", 
-            "React.js", "Next.js", "Laravel", "C++", "Python",
-            "Node.js", "Express.js", "Django", "Wordpress", "Php",
-            "MySQL", "PostgreSQL", "Git", "Figma", "Lightroom",
-            "Photography", "Videography"
+            "HTML", "CSS", "JavaScript", "Vue.js",
+            "Tailwind CSS", "React.js", "Next.js",
+            "Laravel", "C++", "Python", "Node.js",
+            "Express.js", "Django", "Wordpress",
+            "Php", "MySQL", "PostgreSQL", "Git",
+            "Figma", "Lightroom", "Arduino", "Dart",
+            "Flutter", "Photography"
         ];
     }
 }
@@ -59,17 +60,17 @@ class AboutMe {
      });  // Animates only the first time it's in view
 
     return (
-        <div className="relative w-full h-full flex flex-col justify-center items-center py-36 overflow-hidden">
+        <div className="relative w-full h-full flex flex-col justify-center items-center sm:py-36 py-0  overflow-hidden">
 
-            <div className="absolute flex flex-col justify-center items-center top-0 -translate-x-[150px]">
+            {/* <div className="absolute flex flex-col justify-center items-center top-0 -translate-x-[150px]">
                 <div className="bg-[#54438b] h-[150px] w-1"></div>
-            </div>
+            </div> */}
 
             {/* <p className="absolute text-[55vh] font-bold text-[#9f9f9f] z-0">About</p> */}
             <p className="absolute text-9xl font-bold text-[#9f9f9f] top-14 left-11 -rotate-12 z-0">About</p>
             <p className="absolute text-9xl font-bold text-[#9f9f9f] right-8 bottom-10 -rotate-6 z-0 overflow-hidden">About</p>
 
-            <div className='w-[70%] z-10 select-text'>
+            <div className='sm:w-[80%] w-[180%] sm:scale-100 scale-50 z-10 select-text'>
                 <motion.div
                     ref={ref}
                     initial={{ opacity: 0, x: -100 }}

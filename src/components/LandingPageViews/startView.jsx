@@ -10,10 +10,9 @@ import DownloadButton from "../general/cv_button"
 export default function StartView() {
 
     const [texts, setTexts] = useState([
-        "4th Year BSCS Student",
-        "A Frontend Developer",
-        "A Photographer",
-        "A Videographer",
+        "Fullstack Developer",
+        "IoT Enthusiast",
+        "Hobbyist Photographer",
     ])
 
     const ref = useRef(null);
@@ -25,23 +24,23 @@ export default function StartView() {
     return (
         <div className="relative w-full h-full flex flex-col justify-center items-center">
             
-            <div className="absolute flex flex-col justify-center items-center translate-y-[400px] -translate-x-[150px]">
+            {/* <div className="absolute flex flex-col justify-center items-center translate-y-[400px] -translate-x-[150px]">
                 <div className="relative flex items-center justify-center border-[#54438b] border-4 rounded-full w-6 h-6"></div>
-                <div className="absolute -translate-y-[350px] bg-[#0A0F15] p-2">
+                <div className="absolute -translate-y-[350px] bg-[#080A11] p-2">
                     <Link to="#Works">
                         <div className="relative transition-all hover:scale-105 cursor-pointer animate-pulse-custom">
                             <FontAwesomeIcon icon={faComputerMouse} className="text-[#54438b] rotate-180  duration-75 text-4xl translate-y-[1.5px]" />
                         </div>
                         <div className="relative transition-all animate cursor-pointer">
-                            <span className="absolute -bottom-24 -left-[135%] rotate-90 text-sm text-nowrap text-[#54438b] bg-[#0A0F15] p-2">Learn more</span>
+                            <span className="absolute -bottom-24 -left-[135%] rotate-90 text-sm text-nowrap text-[#54438b] bg-[#080A11] p-2">Learn more</span>
                         </div>
                     </Link>
                 </div>
                 <div className="bg-[#54438b] h-[1000px] w-1"></div>
-            </div>
+            </div> */}
 
             
-            <div className="absolute translate-x-10 flex flex-col items-start justify-center font-semibold gap-4 -translate-y-10 drop-shadow-lg">
+            <div className="absolute flex flex-col items-start justify-center font-semibold gap-4 drop-shadow-lg">
                 <motion.div
                     ref={ref}
                     initial={{ opacity: 0, x: 100 }}
@@ -52,8 +51,8 @@ export default function StartView() {
                     <div className="text-5xl flex flex-row items-center justify-center gap-6">
                         <div className="flex flex-row items-center justify-center">
                             {/* <span className="text-[#7964be] text-3xl">&lt;</span> */}
-                            <span className="text-[#e4e4e4] font-black text-4xl">peter<span className="pr-2"></span>casiano</span>
-                            <span className="text-[#7964be] pl-1 pt-1 text-3xl">/&gt;</span>
+                            <span className="text-[#e4e4e4] font-black text-4xl">pacasiano</span>
+                            <span className="text-[#7964be] pl-10 pt-1 text-3xl">/&gt;</span>
                         </div>
                     </div>
                     <div className="w-[250px] flex flex-col gap-1.5">
