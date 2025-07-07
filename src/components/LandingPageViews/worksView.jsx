@@ -1,6 +1,5 @@
 
 import { useState } from 'react'
-import { useMediaQuery } from 'react-responsive';
 import WorkCard from '../general/WorkCard'
 import unipass from '../../assets/unipass.png'
 import workwize from '../../assets/workwize.png'
@@ -8,25 +7,11 @@ import ac7 from '../../assets/ac7.png'
 import esp32 from '../../assets/esp32.png'
 import dragonKnight from '../../assets/dragonknight.png'
 import unicamp from '../../assets/unicamp.png'
-import { useMemo } from 'react';
-
-const getRandomPlacement = () => {
-    const horizontal = ['start', 'center', 'end'];
-    const vertical = ['start', 'center', 'end'];
-
-    const randomX = horizontal[Math.floor(Math.random() * horizontal.length)];
-    const randomY = vertical[Math.floor(Math.random() * vertical.length)];
-
-    return `${randomY} ${randomX}`;
-    };
 
 
 export default function WorksView() {
 
-    // isMobile?
-    const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
-
-    const [projects, setProject] = useState([
+    const [projects] = useState([
         {
             title: "Workwize",
             description: "A platform for Task Management",
@@ -65,11 +50,6 @@ export default function WorksView() {
         }
     ])
 
-    const placements = useMemo(
-        () => projects.map(() => getRandomPlacement()),
-        [projects]
-    );
-
     return (
         <div>
             {/* <div className="absolute flex flex-col justify-center items-center top-0 -translate-x-[150px]">
@@ -80,14 +60,14 @@ export default function WorksView() {
                 <span className="absolute text-[60vh] rotate-6 font-bold text-[#1d1731]/40 -z-0 text-nowrap">Works</span>
 
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:gap-20 gap-0 sm:p-10 p-0 w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:gap-20 gap-14 sm:p-10 p-0 place-items-center">
                 {projects.map((project, index) => (
                     <div
                     key={index}
-                    className="relative h-64 w-full overflow-visible"
+                    className="relative h-64 w-fit content-center overflow-visible"
                     >
                     <div
-                        className={`absolute ${placements[index]} transition-transform duration-200 hover:scale-105`}
+                        className={`transition-transform w-fit duration-200 hover:scale-105`}
                         style={{ width: '100%' }}
                     >
                         <WorkCard

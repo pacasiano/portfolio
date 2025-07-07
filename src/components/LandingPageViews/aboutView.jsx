@@ -13,13 +13,12 @@ class AboutMe {
     constructor() {
         this.name = "Peter Andre Casiano";
         this.location = "Davao City";
-        this.occupation = "Unemployed";
         this.email = "pacasiano@icloud.com";
     }
     
     workExperience() {
         return ([
-        { "2024-2025": "ARISEN Intern" }
+        { "2024-2025": "ARISEn Intern" }
         ]);
     }
     
@@ -27,7 +26,7 @@ class AboutMe {
         return ([
         {"2020-2025": "Ateneo de Davao University"},
         {"2018-2020": "San Pedro College Davao City"},
-        {"2015-2018": "ABD Educational Development Center"},
+        {"2015-2018": "ABC Educational Development Center"},
         ]);
     }
     
@@ -38,8 +37,8 @@ class AboutMe {
             "Laravel", "C++", "Python", "Node.js",
             "Express.js", "Django", "Wordpress",
             "Php", "MySQL", "PostgreSQL", "Git",
-            "Figma", "Lightroom", "Arduino", "Dart",
-            "Flutter", "Photography"
+            "Figma", "Lightroom", "Arduino",
+            "Dart", "Flutter"
         ];
     }
 }
