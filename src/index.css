@@ -3,18 +3,34 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
+@layer utilities {
+    /* Chrome, Safari, and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+    display: none;
+    }
 
-
-html, body, #root {
-    @apply bg-neutral-900 text-white select-none font-mono;
+    /* IE, Edge, and Firefox */
+    .no-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+    }
 }
 
-/* * {
-cursor: none;
-} */
+@layer components {
+
+html, body, #root {
+    @apply text-black select-none font-mono;
+    /* hides scrollbars */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+
+}
+
+.bg-dotted {
+    background-color: #fafafa;
+    background-image: radial-gradient(circle, #c5c5c5 1px, transparent 0);
+    background-size: 20px 20px;
+}
 
 .custom-cursor {
     @apply fixed rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-300 ease-out;

@@ -11,7 +11,7 @@ const DownloadButton = () => {
     };
 
     return (
-        <div className="absolute bottom-10 right-10 animate-pulse-custom hover:animate-none">
+        <div className="absolute bottom-36 right-10 z-40 animate-pulse-custom hover:animate-none">
             <button
                 onClick={handleDownload}
                 className="bg-[#4c426d] text-white text-sm font-semibold whitespace-nowrap px-4 py-1 rounded-lg hover:bg-[#54438b]"

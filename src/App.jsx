@@ -14,7 +14,7 @@ function App() {
       index: true,
       path: "/",
       element: (
-        <div className="w-screen h-screen">
+        <div className="">
           <Header />
           <div className="">
             <LandingPage />
@@ -29,7 +29,8 @@ function App() {
   ], { basename: "/portfolio" })
 
   return (
-    <div className="bg-neutral-900">
+    <div className="h-screen">
+      {/* <p>My Portfolio </p> */}
       <RouterProvider router={router} />
     </div>
   )

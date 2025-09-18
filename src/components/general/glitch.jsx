@@ -1,130 +1,67 @@
-// import { useState, useEffect } from 'react';
+"use client";
+import { useEffect, useRef, useState } from "react";
 
-// // eslint-disable-next-line react/prop-types
-// const GlitchText = ({ text }) => {
-//     const [displayText, setDisplayText] = useState(text);
-//     const [isGlitching, setIsGlitching] = useState(false);
+const alphaCaps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ '".split("");
+const alpha = "abcdefghijklmnopqrstuvwxyz '".split("");
 
-//     useEffect(() => {
-//         const glitchInterval = 5000; // Interval between glitches
-//         const glitchDuration = 1200; // Duration of each glitch effect
+/**
+ * @param {{ phrases: string[], delay?: number }} props
+ */
 
-//         const interval = setInterval(() => {
-//         setIsGlitching(true);
-//         let glitchTimeouts = [];
-
-//         for (let i = 0; i < 15; i++) {
-//             glitchTimeouts.push(
-//             setTimeout(() => {
-//                 setDisplayText(getGlitchedText(text));
-//             }, i * (glitchDuration / 15))
-//             );
-//         }
-
-//         glitchTimeouts.push(
-//             setTimeout(() => {
-//             setDisplayText(text);
-//             setIsGlitching(false);
-//             }, glitchDuration)
-//         );
-
-//         return () => {
-//             glitchTimeouts.forEach(timeout => clearTimeout(timeout));
-//         };
-//         }, glitchInterval);
-
-//         return () => clearInterval(interval);
-//     }, [text]);
-
-//     const getGlitchedText = (originalText) => {
-//         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-=+[]{}|;:<>?/~`"\'\\¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶¹º»¼½¾¿';
-//         const length = Math.floor(Math.random() * (originalText.length)) + 3; // Random length between 3 and original text lenght
-//         let glitchedText = '';
-    
-//         for (let i = 0; i < length; i++) {
-//         if (Math.random() < 0.5 && i < originalText.length) {
-//             glitchedText += originalText[i];
-//         } else {
-//             glitchedText += chars[Math.floor(Math.random() * chars.length)];
-//         }
-//         }
-    
-//         return glitchedText;
-//     };
-
-//     return (
-//         <span className={`glitch-text ${isGlitching ? 'glitching' : ''}`} data-text={text}>
-//         {displayText}
-//         </span>
-//     );
-// };
-
-// export default GlitchText;
-
-import { useState, useEffect } from 'react';
+import PropTypes from "prop-types";
 
 // eslint-disable-next-line react/prop-types
-const GlitchText = ({ texts }) => {
-    const [currentTextIndex, setCurrentTextIndex] = useState(0);
-    const [displayText, setDisplayText] = useState(texts[0]);
-    const [isGlitching, setIsGlitching] = useState(false);
+export default function GlitchText({ phrases, delay = 100 }) {
+  const [display, setDisplay] = useState("");
+  const progressRef = useRef(0);
+  const outputRef = useRef("");
+  const indexRef = useRef(0);
+  const textRef = useRef(phrases[0]);
 
-    useEffect(() => {
-        const glitchInterval = 5000; // Interval between glitches
-        const glitchDuration = 2000; // Duration of each glitch effect
+  useEffect(() => {
+    let animationId;
 
-        const interval = setInterval(() => {
-            setIsGlitching(true);
-            let glitchTimeouts = [];
+    const glitch = () => {
+      const text = textRef.current;
+      const len = text.length;
 
-            for (let i = 0; i < 15; i++) {
-                glitchTimeouts.push(
-                    setTimeout(() => {
-                        setDisplayText(getGlitchedText(texts[currentTextIndex]));
-                    }, i * (glitchDuration / 15))
-                );
-            }
+      if (progressRef.current >= len) {
+        // Finished current phrase → move to next
+        setTimeout(() => {
+          indexRef.current = (indexRef.current + 1) % phrases.length;
+          textRef.current = phrases[indexRef.current];
+          progressRef.current = 0;
+          outputRef.current = "";
+          animationId = requestAnimationFrame(glitch);
+        }, delay);
+        return;
+      }
 
-            glitchTimeouts.push(
-                setTimeout(() => {
-                    // eslint-disable-next-line react/prop-types
-                    const nextIndex = (currentTextIndex + 1) % texts.length;
-                    setCurrentTextIndex(nextIndex);
-                    setDisplayText(texts[nextIndex]);
-                    setIsGlitching(false);
-                }, glitchDuration)
-            );
+      const randIndex = Math.floor(Math.random() * alpha.length);
+      const nextChar = alpha[randIndex];
 
-            return () => {
-                glitchTimeouts.forEach(timeout => clearTimeout(timeout));
-            };
-        }, glitchInterval);
+      if (
+        nextChar === text[progressRef.current] ||
+        alphaCaps[randIndex] === text[progressRef.current]
+      ) {
+        outputRef.current += text[progressRef.current];
+        setDisplay(outputRef.current);
+        progressRef.current++;
+      } else {
+        setDisplay(outputRef.current + nextChar);
+      }
 
-        return () => clearInterval(interval);
-    }, [currentTextIndex, texts]);
-
-    const getGlitchedText = (originalText) => {
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-=+[]{}|;:<>?/~`"\'\\¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶¹º»¼½¾¿';
-        const length = Math.floor(Math.random() * (originalText.length)) + 3; // Random length between 3 and original text length
-        let glitchedText = '';
-    
-        for (let i = 0; i < length; i++) {
-            if (Math.random() < 0.5 && i < originalText.length) {
-                glitchedText += originalText[i];
-            } else {
-                glitchedText += chars[Math.floor(Math.random() * chars.length)];
-            }
-        }
-    
-        return glitchedText;
+      animationId = requestAnimationFrame(glitch);
     };
 
-    return (
-        <span className={`glitch-text transition-all ${isGlitching ? 'glitching' : ''}`} data-text={texts[currentTextIndex]}>
-            {displayText}
-        </span>
-    );
+    animationId = requestAnimationFrame(glitch);
+    return () => cancelAnimationFrame(animationId);
+  }, [phrases, delay]);
+
+  return <h1 className="text-2xl font-mono">{display}</h1>;
+}
+
+GlitchText.propTypes = {
+  phrases: PropTypes.arrayOf(PropTypes.string).isRequired,
+  delay: PropTypes.number,
 };
-
-export default GlitchText;
-
