@@ -26,7 +26,7 @@ function App() {
       path: "*",
       element: <div>Error</div>,
     },
-  ], { basename: "/portfolio" })
+  ], { basename: "/" })
 
   return (
     <div className="h-screen">
