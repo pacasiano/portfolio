@@ -5,7 +5,7 @@ import Typewriter from 'typewriter-effect';
 export default function AboutView() {
 
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: false });
 
   const skills = [
     "HTML", "CSS", "JavaScript", "Vue.js",
