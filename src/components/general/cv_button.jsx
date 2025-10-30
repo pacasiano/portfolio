@@ -3,7 +3,7 @@
 const DownloadButton = () => {
     const handleDownload = () => {
         const link = document.createElement("a");
-        link.href = `/portfolio/assets/cv_casiano.pdf`;// Path to your file
+        link.href = `/assets/cv_casiano.pdf`;// Path to your file
         link.download = "cv_casiano.pdf"; // Name for the downloaded file
         document.body.appendChild(link);
         link.click();
