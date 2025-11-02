@@ -1,5 +1,6 @@
 
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
+import { Analytics } from '@vercel/analytics/next';
 
 // pages
 import LandingPage from "./pages/LandingPage"
@@ -32,6 +33,7 @@ function App() {
     <div className="h-screen">
       {/* <p>My Portfolio </p> */}
       <RouterProvider router={router} />
+      <Analytics />
     </div>
   )
 }
