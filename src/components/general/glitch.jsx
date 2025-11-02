@@ -58,7 +58,7 @@ export default function GlitchText({ phrases, delay = 100 }) {
     return () => cancelAnimationFrame(animationId);
   }, [phrases, delay]);
 
-  return <h1 className="text-2xl font-mono">{display}</h1>;
+  return <span className="text-2xl font-mono ml-1">{display}</span>;
 }
 
 GlitchText.propTypes = {
