@@ -37,10 +37,10 @@ export default function Header() {
       </div>
 
       {/* Right Nav Links */}
-      <div className="text-md font-bold flex flex-row justify-center items-center gap-4 pr-5 sm:pl-0 pl-5 sm:mt-0 mt-2">
+      <div className="text-xl font-bold flex flex-row justify-center items-center gap-4 pr-5 sm:pl-0 pl-5 sm:mt-0 mt-2">
         <Link
           to="#Start"
-          className={`flex items-center text-sm md:text-xl transition ${
+          className={`flex items-center text-md sm:text-2xl transition ${
             hash === "Start" ? "text-accent" : "text-primary"
           } hover:text-highlight`}
         >
@@ -48,7 +48,7 @@ export default function Header() {
         </Link>
         <Link
           to="#Works"
-          className={`flex items-center text-sm md:text-xl transition ${
+          className={`flex items-center text-md sm:text-2xl transition ${
             hash === "Works" ? "text-accent" : "text-primary"
           } hover:text-highlight`}
         >
@@ -56,7 +56,7 @@ export default function Header() {
         </Link>
         <Link
           to="#About"
-          className={`flex items-center text-sm md:text-xl transition ${
+          className={`flex items-center text-md sm:text-2xl transition ${
             hash === "About" ? "text-accent" : "text-primary"
           } hover:text-highlight`}
         >

@@ -72,11 +72,29 @@ export default function WorksView() {
         }
     };
 
+    const ref = useRef(null);
+    const isInViewWord = useInView(ref, {
+        once: false,
+        amount: "some",
+    });
+
     return (
         <div className="relative w-screen h-[700px] flex justify-center items-center overflow-hidden">
-            <span className="absolute text-[60vh] rotate-6 font-bold text-[#1d1731]/40 -z-0 text-nowrap">
+            <span className="absolute text-[60vh] rotate-6 font-bold text-[#1d1731]/40 font-sans -z-0 text-nowrap">
                 Works
             </span>
+
+            <span className="absolute font-black top-10 sm:left-20 left-50 text-[5vh] font-sans -rotate-6 text-[#fef4ff]">
+                <motion.div
+                    ref={ref}
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={isInViewWord ? { opacity: 1, x: 10 } : { opacity: 0, x: -100 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                >
+                My Works!
+                </motion.div>
+            </span>
+
 
             {/* Scroll buttons */}
             <div ref={buttonsRef} className="absolute left-1/2 bottom-10 flex transform -translate-x-1/2">
@@ -108,7 +126,7 @@ export default function WorksView() {
             {/* horizontal scroll wrapper */}
             <div
                 ref={scrollRef}
-                className="flex items-center gap-20 overflow-x-auto h-[500px] no-scrollbar relative z-10 snap-x snap-mandatory"
+                className="flex items-center gap-20 overflow-x-auto h-[600px] no-scrollbar relative z-10 snap-x snap-mandatory"
                 style={{ scrollPaddingInline: 'calc(50vw - 150px)' }} // centers snap area
             >
                 {projects.map((project, index) => (

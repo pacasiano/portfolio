@@ -29,10 +29,10 @@ export default function StartView() {
     <div className="relative w-full h-full flex flex-col justify-between items-center z-40" style={{ transform: `scale(${scale})`, opacity }}>
         <div className="absolute top-1/3 flex flex-col items-start justify-center font-semibold gap-4 drop-shadow-lg">
             <div className="flex flex-col gap-2 transition-transform">
-            <div className="text-[5rem] flex flex-row items-center justify-center gap-6">
+            <div className="sm:text-[5rem] text-[2rem] flex flex-row items-center justify-center gap-6">
                 <div className="flex flex-row items-center justify-center">
-                <span className="text-accentDark font-black">pacasiano</span>
-                <span className="text-slash pl-10 pt-1">/&gt;</span>
+                    <span className="text-accentDark font-black">pacasiano</span>
+                    <span className="text-slash pl-10 pt-1">/&gt;</span>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@ export default function StartView() {
             </Link>
         </div>
 
-        <DownloadButton label="Download CV"/>
+        <DownloadButton label="Download Resume"/>
     </div>
     )
 }

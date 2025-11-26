@@ -32,19 +32,21 @@ function LandingPage() {
     return (
         <div>
             {/* Start Section */}
-            <div id="Start" className="relative w-full h-screen overflow-hidden bg-dotted">
+            <div id="Start" className="relative w-full h-[calc(100vh+10rem)] overflow-hidden bg-dotted">
                 <div className="w-full h-screen">
                 <StartView />
                 </div>
-                <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#FCBC6D]" />
-            </div>  
+                {/* <div className="absolute bottom-0 left-0 w-full h-0 bg-gradient-to-b from-transparent to-[#FCBC6D]" /> */}
+            </div>
 
             {/* Works + About Section */}
             <div className="relative w-full min-h-screen flex flex-col justify-center items-center 
                             bg-[linear-gradient(to_bottom,#FCBC6D_0%,#D9737F_25%,#AC6D81_50%,#685C79_75%,#455C78_100%)]">
-
+                
+                <div className="absolute -top-40 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#FCBC6D]" />
                 {/* Works Section */}
                 <div id="Works" className="relative w-full flex flex-col justify-center items-center">
+                
                 <WorksView />
 
                 {/* Background shapes (randomized placement) */}

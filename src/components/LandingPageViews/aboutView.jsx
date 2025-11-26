@@ -5,7 +5,7 @@ import Typewriter from 'typewriter-effect';
 export default function AboutView() {
 
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false });
+  const isInView = useInView(ref, { once: false, amount: "some" });
 
   const skills = [
     "HTML", "CSS", "JavaScript", "Vue.js",
@@ -18,8 +18,8 @@ export default function AboutView() {
   ];
 
   const workExperience = [
-    { "2024-2025": "ARISEn Intern" },
-    { "2024-2024": "SYSDEV Front-end Developer" }
+    { "2024-2025": "Ateneo De Davao Research in Information Systems and Software Engineering Lab" }, 
+    { "2024-2024": "SAMAHAN Systems and Development | Front-end Developer" }
   ];
 
   const education = [
@@ -28,8 +28,25 @@ export default function AboutView() {
     {"2015-2018": "ABC Educational Development Center"},
   ];
 
+  const ref2 = useRef(null);
+  const isInViewWord = useInView(ref, {
+      once: false,
+      amount: "some",
+  });
+
   return (
-    <div className="relative w-full min-h-screen flex flex-col justify-center items-center overflow-hidden text-white">
+    <div className="relative w-full min-h-screen flex flex-col pt-20 justify-center items-center overflow-hidden text-white">
+
+      <span className="absolute font-black top-10 sm:left-20 left-50 text-[5vh] font-sans -rotate-6 text-[#fef4ff]">
+        <motion.div
+            ref={ref2}
+            initial={{ opacity: 0, x: -100 }}
+            animate={isInViewWord ? { opacity: 1, x: 10 } : { opacity: 0, x: -100 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+        About Me!
+        </motion.div>
+      </span> 
 
       {/* Background decorative text */}
       <p className="absolute text-[15rem] font-bold text-[#2a2a2a] top-10 left-0 -rotate-12 z-0 select-none pointer-events-none">About</p>
@@ -39,7 +56,7 @@ export default function AboutView() {
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 flex flex-col sm:w-[80%] w-[95%] gap-12"
       >
@@ -48,7 +65,24 @@ export default function AboutView() {
         <div className="bg-[#1b1b1b] p-8 rounded-xl shadow-lg border border-[#444]">
           <p className="text-xl mb-4">Hey, I&apos;m <span className="text-accentDark font-bold">Peter Andre Casiano</span>!</p>
           <div className="bg-[#111] p-4 rounded-md overflow-x-auto">
-            <Typewriter
+
+            <p>
+            A Bachelor of Science in Computer Science Graduate from Ateneo de Davao University.{" "}
+            <span style={{ display: "inline-block" }}>
+              <Typewriter
+                options={{
+                  strings: ["I Like Creating!", "I Like Exploring!", "And I Love Learning New Things!"],
+                  autoStart: true,
+                  loop: true,
+                  delay: 40,
+                  deleteSpeed: 20
+                }}
+              />
+            </span>
+          </p>
+
+
+            {/* <Typewriter
               options={{
                 strings: [
                   'class AboutMe {',
@@ -64,7 +98,8 @@ export default function AboutView() {
                 delay: 40,
                 deleteSpeed: 20
               }}
-            />
+            /> */}
+
           </div>
         </div>
 
