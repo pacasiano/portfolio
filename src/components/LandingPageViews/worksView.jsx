@@ -4,6 +4,7 @@ import unipass from "../../assets/unipass.png";
 import workwize from "../../assets/workwize.png";
 import ac7 from "../../assets/ac7.png";
 import esp32 from "../../assets/esp32.png";
+import anna from "../../assets/anna.png";
 import dragonKnight from "../../assets/dragonknight.png";
 import unicamp from "../../assets/unicamp.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -41,19 +42,19 @@ export default function WorksView() {
             role: "Embedded Systems Developer",
         },
         {
-            title: "DragonKnight",
-            description: "A simple 2D game made for fun using Godot and C0 assets",
-            image: dragonKnight,
-            link: "https://github.com/pacasiano/DragonKnight",
-            role: "Game Developer",
-        },
-        {
             title: "Unicamp",
             description:
                 "Web-based admin application designed to help administrators efficiently manage campus facilities.",
             image: unicamp,
             link: "https://github.com/pacasiano/uni_camp",
             role: "Frontend Developer",
+        },
+        {
+            title: "Anna's Portfolio",
+            description: "A commissioned web portfolio using Next.js and Wordpress (headless CMS)",
+            image: anna,
+            link: "https://annas-portfolio.vercel.app/",
+            role: "Fullstack Developer",
         },
     ]);
 
@@ -79,25 +80,13 @@ export default function WorksView() {
     });
 
     return (
-        <div className="relative w-screen h-[700px] flex justify-center items-center overflow-hidden">
+        <div className="relative w-screen py-36 flex justify-center items-center overflow-hidden mt-52 ">
             <span className="absolute text-[60vh] rotate-6 font-bold text-[#1d1731]/40 font-sans -z-0 text-nowrap">
                 Works
             </span>
 
-            <span className="absolute font-black top-10 sm:left-20 left-50 text-[5vh] font-sans -rotate-6 text-[#fef4ff]">
-                <motion.div
-                    ref={ref}
-                    initial={{ opacity: 0, x: -100 }}
-                    animate={isInViewWord ? { opacity: 1, x: 10 } : { opacity: 0, x: -100 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                >
-                My Works!
-                </motion.div>
-            </span>
-
-
             {/* Scroll buttons */}
-            <div ref={buttonsRef} className="absolute left-1/2 bottom-10 flex transform -translate-x-1/2">
+            {/* <div ref={buttonsRef} className="absolute left-1/2 bottom-10 flex transform -translate-x-1/2">
                 <motion.button
                     onClick={() => scroll("left")}
                     initial={{ opacity: 0, y: 20 }}
@@ -105,7 +94,7 @@ export default function WorksView() {
                     transition={{ duration: 0.4, ease: "easeOut" }}
                     whileHover={{ scale: 1.25, zIndex: 30 }}
                     whileTap={{ scale: 0.9 }}
-                    className="z-20 bg-[#7964be]/80 hover:bg-[#5f47a1] text-white px-3.5 py-2 rounded-full rounded-r-none shadow-lg cursor-pointer"
+                    className="z-20 bg-[#03191F]/80 hover:bg-[#294035] text-white px-3.5 py-2 rounded-full rounded-r-none shadow-lg cursor-pointer"
                 >
                     <FontAwesomeIcon icon={faChevronLeft} size="lg" />
                 </motion.button>
@@ -117,35 +106,49 @@ export default function WorksView() {
                     transition={{ duration: 0.4, ease: "easeOut" }}
                     whileHover={{ scale: 1.25, zIndex: 30 }}
                     whileTap={{ scale: 0.9 }}
-                    className="z-20 bg-[#7964be]/80 hover:bg-[#5f47a1] text-white px-3.5 py-2 rounded-full rounded-l-none shadow-lg cursor-pointer"
+                    className="z-20 bg-[#03191F]/80 hover:bg-[#294035] text-white px-3.5 py-2 rounded-full rounded-l-none shadow-lg cursor-pointer"
                 >
                     <FontAwesomeIcon icon={faChevronRight} size="lg" />
                 </motion.button>
-            </div>
+            </div> */}
 
             {/* horizontal scroll wrapper */}
-            <div
-                ref={scrollRef}
-                className="flex items-center gap-20 overflow-x-auto h-[600px] no-scrollbar relative z-10 snap-x snap-mandatory"
-                style={{ scrollPaddingInline: 'calc(50vw - 150px)' }} // centers snap area
-            >
-                {projects.map((project, index) => (
-                    <div
-                        key={index}
-                        className={`snap-center flex-shrink-0 w-[300px] md:w-[400px] lg:w-[450px] ${index === 0 ? "ml-32" : ""
-                            } ${index === projects.length - 1 ? "mr-32" : ""}`}
+            <div className="relative sm:p-10 p-0">
+                <span className="absolute font-black -top-28 lg:-top-20 sm:-left-16 lg:left-0 2xl:-left-16 left-0 text-[5vh] font-sans -rotate-6 text-highlight">
+                    <motion.div
+                        ref={ref}
+                        initial={{ opacity: 0, x: -100 }}
+                        animate={isInViewWord ? { opacity: 1, x: 10 } : { opacity: 0, x: -100 }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
-                        <div className="transition-transform duration-200 hover:scale-105">
-                            <WorkCard
-                                title={project.title}
-                                description={project.description}
-                                image={project.image}
-                                link={project.link}
-                                role={project.role}
-                            />
+                    My Works!
+                    </motion.div>
+                </span>
+                <div
+                    className="relative grid lg:grid-cols-2 2xl:grid-cols-3 grid-cols-1 items-center gap-20 no-scrollbar z-10 "
+                    // style={{ scrollPaddingInline: 'calc(50vw - 150px)' }}
+                    ref={scrollRef}
+                >
+                    {projects.map((project, index) => (
+                        <div
+                            key={index}
+                            className={`w-[300px] md:w-[400px] lg:w-[450px] 
+                            ${index % 3 === 1 ? "2xl:mt-36 mt-0" : "2xl:-mt-36 mt-0"}
+                        `}
+                            
+                        >
+                            <div className="transition-transform duration-200">
+                                <WorkCard
+                                    title={project.title}
+                                    description={project.description}
+                                    image={project.image}
+                                    link={project.link}
+                                    role={project.role}
+                                />
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     );

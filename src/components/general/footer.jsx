@@ -6,13 +6,16 @@ export default function Footer() {
   return (
     <footer className="w-full text-white py-12 px-6 md:px-20 flex flex-col md:flex-row justify-between items-center gap-8">
       {/* Logo / Name */}
-      <div className="flex flex-col items-center md:items-start gap-2">
-        <h2 className="text-3xl font-bold text-accent">Peter Andre Casiano</h2>
+      <div className="flex flex-col items-center sm:items-start gap-2">
+        <div className="flex flex-col lg:flex-row items-center sm:items-start">
+          <h2 className="text-3xl font-bold text-accent lg:mr-4">Peter Andre</h2>
+          <h2 className="text-3xl font-bold text-accent">Casiano</h2>
+        </div>
         <p className="text-gray-300 text-sm md:text-base">Davao City, Philippines</p>
       </div>
 
       {/* Contact */}
-      <div className="flex flex-col items-center md:items-start gap-4">
+      <div className="flex flex-col items-center sm:items-start gap-4">
         <h3 className="font-semibold text-lg">Contact Me</h3>
         <div className="flex flex-col gap-2 text-gray-300">
           <a href="mailto:pacasiano@icloud.com" className="flex items-center gap-2 hover:text-[#7964be] transition">

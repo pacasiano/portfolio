@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faComputerMouse } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
-import DownloadButton from "../general/cv_button"
+// import DownloadButton from "../general/cv_button"
 import { useEffect } from "react"
 
 export default function StartView() {
@@ -31,8 +31,8 @@ export default function StartView() {
             <div className="flex flex-col gap-2 transition-transform">
             <div className="sm:text-[5rem] text-[2rem] flex flex-row items-center justify-center gap-6">
                 <div className="flex flex-row items-center justify-center">
-                    <span className="text-accentDark font-black">pacasiano</span>
-                    <span className="text-slash pl-10 pt-1">/&gt;</span>
+                    <span className="text-[#6B9374] font-black">pacasiano</span>
+                    <span className="text-[#687569] opacity-60 pl-10 pt-1">/&gt;</span>
                 </div>
             </div>
 
@@ -44,7 +44,7 @@ export default function StartView() {
             </div>
         </div>
 
-        <div className="absolute bottom-10 flex flex-col items-center gap-6">
+        <div className="absolute bottom-56 flex flex-col items-center gap-6">
             <Link
             to="#Works"
             className="flex flex-col items-center text-[#2b2b2b] hover:text-[#7964be] transition"
@@ -54,7 +54,7 @@ export default function StartView() {
             </Link>
         </div>
 
-        <DownloadButton label="Download Resume"/>
+        {/* <DownloadButton label="Download Resume"/> */}
     </div>
     )
 }
