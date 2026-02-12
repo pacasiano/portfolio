@@ -25,7 +25,6 @@ export default function AboutView() {
   const education = [
     {"2020-2025": "Ateneo de Davao University"},
     {"2018-2020": "San Pedro College Davao City"},
-    {"2015-2018": "ABC Educational Development Center"},
   ];
 
   const ref2 = useRef(null);

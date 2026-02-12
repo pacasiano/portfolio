@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import LazyLoad from 'react-lazyload';
 
 // eslint-disable-next-line react/prop-types
-const WorkCard = ({ title, description, image, link, role }) => {
+const WorkCard = ({ title, description, image, link, role, stack }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: false,
@@ -60,6 +60,15 @@ const WorkCard = ({ title, description, image, link, role }) => {
               />
             </LazyLoad>
             <div className="absolute inset-0 bg-black/40 rounded-xl" />
+
+            <div className="absolute top-2 left-2 flex flex-row flex-wrap gap-2">
+              {/* eslint-disable-next-line react/prop-types */}
+              {stack.map((e,index) => (
+                 <div key={index} className="radius-50 bg-[#03191F]/80 text-white px-2 py-1 text-xs rounded-full shadow-lg whitespace-nowrap">
+                  {e}
+              </div>
+              ))}
+            </div>
 
             {/* Text overlay */}
             <div className="absolute -bottom-12 left-0 right-0 p-4">

@@ -19,6 +19,7 @@ export default function WorksView() {
             image: workwize,
             link: "https://github.com/pacasiano/FullStack",
             role: "Frontend Developer",
+            stack: ["React.js", "Tailwind CSS", "Django", "PostgreSQL"],
         },
         {
             title: "AC7",
@@ -26,6 +27,7 @@ export default function WorksView() {
             image: ac7,
             link: "https://github.com/pacasiano/AC7",
             role: "Fullstack Developer",
+            stack: ["React.js", "Tailwind CSS", "Node.js", "Express.js"],
         },
         {
             title: "UniPASS",
@@ -33,6 +35,7 @@ export default function WorksView() {
             image: unipass,
             link: "https://unipass.arisenlab.org/login",
             role: "UI/UX & Frontend Developer",
+            stack: ["Vue.js", "Tailwind CSS", "Laravel", "MySQL"],
         },
         {
             title: "SensorStack",
@@ -40,6 +43,7 @@ export default function WorksView() {
             image: esp32,
             link: "https://github.com/pacasiano/SensorStack",
             role: "Embedded Systems Developer",
+            stack: ["Arduino", "Blynk IoT Platform"],
         },
         {
             title: "Unicamp",
@@ -48,13 +52,15 @@ export default function WorksView() {
             image: unicamp,
             link: "https://github.com/pacasiano/uni_camp",
             role: "Frontend Developer",
+            stack: ["Flutter", "Material", "Firebase"],
         },
         {
             title: "Anna's Portfolio",
             description: "A commissioned web portfolio using Next.js and Wordpress (headless CMS)",
             image: anna,
-            link: "https://annas-portfolio.vercel.app/",
+            // link: "https://annas-portfolio.vercel.app/",
             role: "Fullstack Developer",
+            stack: ["Next.js", "Tailwind CSS", "Wordpress (Headless CMS)"],
         },
     ]);
 
@@ -144,6 +150,7 @@ export default function WorksView() {
                                     image={project.image}
                                     link={project.link}
                                     role={project.role}
+                                    stack={project.stack}
                                 />
                             </div>
                         </div>
