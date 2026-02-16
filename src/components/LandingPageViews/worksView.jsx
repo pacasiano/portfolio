@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import WorkCard from "../general/WorkCard";
-import unipass from "../../assets/unipass.png";
-import workwize from "../../assets/workwize.png";
-import ac7 from "../../assets/ac7.png";
-import esp32 from "../../assets/esp32.png";
-import anna from "../../assets/anna.png";
-import unicamp from "../../assets/unicamp.png";
+import unipass from "../../assets/unipass.webp";
+import workwize from "../../assets/workwize.webp";
+import ac7 from "../../assets/ac7.webp";
+import esp32 from "../../assets/esp32.webp";
+import anna from "../../assets/anna.webp";
+import unicamp from "../../assets/unicamp.webp";
 import { motion, useTransform, useScroll } from "framer-motion";
 
 function WorksView({scrollYProgress}) {
