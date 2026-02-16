@@ -42,7 +42,7 @@ const WorkCard = ({ title, description, image, link, role, stack }) => {
       <motion.div
         initial={{ opacity: 0, x: -100 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.5, ease: "easeIn" }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
         className="transition-transform duration-200"
       >
         <Link to={link} className="relative block rounded-xl">

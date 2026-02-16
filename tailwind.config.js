@@ -35,7 +35,7 @@ export default {
         }
       },
       animation: {
-        'pulse-custom': 'pulseGrowShrink 1.5s ease-in-out infinite, pulseHold 1.5s ease-in-out infinite',
+        'pulse-custom': 'pulseGrowShrink 1.5s infinite, pulseHold 1.5s ease-in-out infinite',
       },
     },
   },

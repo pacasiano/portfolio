@@ -52,7 +52,7 @@ export default function Header() {
       {/* Right Nav Links */}
       <div className="text-xl font-bold flex flex-row justify-center items-center gap-4 pr-10 sm:pl-0 pl-5 sm:mt-0 mt-2">
         <Link
-          to="#Start"
+          to="#start"
           className={`flex items-center text-md sm:text-2xl transition ${
             hash === "Start" ? "text-accent" : "text-primary"
           } hover:text-highlight`}
@@ -60,7 +60,7 @@ export default function Header() {
           Start<p className="text-slash">{"/>"}</p>
         </Link>
         <Link
-          to="#Works"
+          to="#works"
           className={`flex items-center text-md sm:text-2xl transition ${
             hash === "Works" ? "text-accent" : "text-primary"
           } hover:text-highlight`}
@@ -68,7 +68,7 @@ export default function Header() {
           Works<p className="text-slash">{"/>"}</p>
         </Link>
         <Link
-          to="#About"
+          to="#about"
           className={`flex items-center text-md sm:text-2xl transition ${
             hash === "About" ? "text-accent" : "text-primary"
           } hover:text-highlight`}

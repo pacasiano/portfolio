@@ -1,14 +1,28 @@
 
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import { Analytics } from '@vercel/analytics/react';
+import { useEffect } from "react";
+import Lenis from "lenis";
 
 // pages
 import LandingPage from "./pages/LandingPage"
 
 // components
-import Header from "./components/general/header"
+// import Header from "./components/general/header"
+import Footer from "./components/general/footer";
 
 function App() {
+
+  useEffect( () => {
+      const lenis = new Lenis()
+
+      function raf(time) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+      }
+
+      requestAnimationFrame(raf)
+    }, [])
 
   const router = createBrowserRouter([
     {
@@ -16,10 +30,11 @@ function App() {
       path: "/",
       element: (
         <div className="">
-          <Header />
+          {/* <Header /> */}
           <div className="">
             <LandingPage />
           </div>
+          <Footer />
         </div>
       ),
     },
@@ -30,11 +45,10 @@ function App() {
   ], { basename: "/" })
 
   return (
-    <div className="h-screen">
-      {/* <p>My Portfolio </p> */}
+    <>
       <RouterProvider router={router} />
       <Analytics />
-    </div>
+    </>
   )
 }
 

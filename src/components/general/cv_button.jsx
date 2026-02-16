@@ -16,7 +16,7 @@ const DownloadButton = () => {
                 onClick={handleDownload}
                 className="bg-[#4c426d] text-white text-sm font-semibold whitespace-nowrap px-4 py-1 rounded-lg hover:bg-[#54438b]"
             >
-                Download Résumé
+                Download Resume
             </button>
         </div>
     );
