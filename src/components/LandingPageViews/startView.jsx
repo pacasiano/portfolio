@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faComputerMouse } from "@fortawesome/free-solid-svg-icons"
+
 import { Link } from "react-router-dom"
 import { motion, useTransform } from "framer-motion"
 import PropTypes from "prop-types"
@@ -53,7 +52,7 @@ export default function StartView({scrollYProgress}) {
             to="#works"
             className="flex flex-col items-center text-[#2b2b2b] hover:text-[#6B9374] transition"
             >
-            <FontAwesomeIcon icon={faComputerMouse} className="text-2xl animate-bounce" />
+            <i className="text-2xl animate-bounce fa fa-computer-mouse" />
             <span className="text-sm mt-1">Learn More</span>
             </Link>
         </div>

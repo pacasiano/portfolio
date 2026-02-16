@@ -1,6 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin, faGithub, faFacebook } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+
 import { useState, useEffect } from "react";
 
 export default function Footer() {
@@ -61,10 +59,10 @@ const FooterData = () => {
         <h3 className="font-semibold text-lg">Contact Me</h3>
         <div className="flex flex-col gap-2 text-gray-300">
           <a href="mailto:pacasiano@icloud.com" className="flex items-center gap-2 hover:text-[#7964be] transition">
-            <FontAwesomeIcon icon={faEnvelope} /> Email
+            <i className="fa fa-envelope" /> Email
           </a>
           <a href="tel:+639171234567" className="flex items-center gap-2 hover:text-[#7964be] transition">
-            <FontAwesomeIcon icon={faPhone} /> Phone
+            <i className="fa fa-phone" /> Phone
           </a>
         </div>
       </section>
@@ -74,13 +72,13 @@ const FooterData = () => {
         <h3 className="font-semibold text-lg">Follow Me</h3>
         <div className="flex gap-4 text-gray-300 text-2xl">
           <a href="https://linkedin.com/in/pacasiano" target="_blank" rel="noopener noreferrer" className="hover:text-[#7964be] transition transform hover:scale-125">
-            <FontAwesomeIcon icon={faLinkedin} />
+            <i className="fa fa-linkedin" />
           </a>
           <a href="https://github.com/pacasiano" target="_blank" rel="noopener noreferrer" className="hover:text-[#7964be] transition transform hover:scale-125">
-            <FontAwesomeIcon icon={faGithub} />
+            <i className="fa fa-github" />
           </a>
           <a href="https://facebook.com/pacasiano" target="_blank" rel="noopener noreferrer" className="hover:text-[#7964be] transition transform hover:scale-125">
-            <FontAwesomeIcon icon={faFacebook} />
+            <i className="fa fa-facebook" />
           </a>
         </div>
       </section>
