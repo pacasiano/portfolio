@@ -1,66 +1,51 @@
 import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import WorkCard from "../general/WorkCard";
-import unipass from "../../assets/unipass.webp";
-import workwize from "../../assets/workwize.webp";
-import ac7 from "../../assets/ac7.webp";
-import esp32 from "../../assets/esp32.webp";
-import anna from "../../assets/anna.webp";
-import unicamp from "../../assets/unicamp.webp";
 import { motion, useTransform, useScroll } from "framer-motion";
 
+import { gql } from "@apollo/client";
+import { useQuery } from "@apollo/client/react";
+
 function WorksView({scrollYProgress}) {
-    const [projects] = useState([
-        {
-            title: "Workwize",
-            description: "A platform for Task Management",
-            image: workwize,
-            link: "https://github.com/pacasiano/FullStack",
-            role: "Frontend Developer",
-            stack: ["React.js", "Tailwind CSS", "Django", "PostgreSQL"],
-        },
-        {
-            title: "AC7",
-            description: "E-commerce website for a beauty brand",
-            image: ac7,
-            link: "https://github.com/pacasiano/AC7",
-            role: "Fullstack Developer",
-            stack: ["React.js", "Tailwind CSS", "Node.js", "Express.js"],
-        },
-        {
-            title: "UniPASS",
-            description: "A Parking Management System for Ateneo de Davao University",
-            image: unipass,
-            link: "https://unipass.arisenlab.org/login",
-            role: "UI/UX & Frontend Developer",
-            stack: ["Vue.js", "Tailwind CSS", "Laravel", "MySQL"],
-        },
-        {
-            title: "SensorStack",
-            description: "ESP32 Environmental Monitoring System with Blynk",
-            image: esp32,
-            link: "https://github.com/pacasiano/SensorStack",
-            role: "Embedded Systems Developer",
-            stack: ["Arduino", "Blynk IoT Platform"],
-        },
-        {
-            title: "Unicamp",
-            description:
-                "Web-based admin application designed to help administrators efficiently manage campus facilities.",
-            image: unicamp,
-            link: "https://github.com/pacasiano/uni_camp",
-            role: "Frontend Developer",
-            stack: ["Flutter", "Material", "Firebase"],
-        },
-        {
-            title: "Anna's Portfolio",
-            description: "A commissioned web portfolio using Next.js and Wordpress (headless CMS)",
-            image: anna,
-            // link: "https://annas-portfolio.vercel.app/",
-            role: "Fullstack Developer",
-            stack: ["Next.js", "Tailwind CSS", "Wordpress (Headless CMS)"],
-        },
-    ]);
+
+    const [projects, setProjects] = useState([]);
+
+    const get_projects = gql`
+        query GetProjects {
+            projects{
+                nodes{
+                title
+                featuredImage{
+                    node{
+                    sourceUrl
+                    altText
+                    }
+                }
+                fields{
+                    description
+                    link
+                    role
+                    stack
+                }
+                }
+            }
+        }`;
+
+    const { loading, error, data } = useQuery(get_projects);
+
+    useEffect(() => {
+        if (data) {
+            const fetchedProjects = data.projects.nodes.map((project) => ({
+                title: project.title,
+                description: project.fields.description,
+                image: project.featuredImage.node.sourceUrl,
+                link: project.fields.link,
+                role: project.fields.role,
+                stack: project.fields.stack.split(",").map((tech) => tech.trim()),
+            }));
+            setProjects(fetchedProjects);
+        }
+    }, [data]);
 
     const [isLgUp, setIsLgUp] = useState(true);
 
