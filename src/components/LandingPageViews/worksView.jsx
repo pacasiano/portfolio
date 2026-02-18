@@ -67,6 +67,7 @@ function WorksView({scrollYProgress}) {
             <WorksText container={container} />
 
             {/* horizontal scroll wrapper */}
+            {error ? <p className="flex justify-center items-center text-center text-white">Error loading projects.</p> :
             <div className="relative sm:p-10 p-0">
                 <div
                     className="relative grid lg:grid-cols-2 2xl:grid-cols-3 grid-cols-1 items-center gap-20 no-scrollbar z-10 "
@@ -81,6 +82,7 @@ function WorksView({scrollYProgress}) {
                         >
                             <div className="transition-transform duration-200">
                                 <WorkCard
+                                    loading={loading}
                                     title={project.title}
                                     description={project.description}
                                     image={project.image}
@@ -93,6 +95,7 @@ function WorksView({scrollYProgress}) {
                     ))}
                 </div>
             </div>
+            }
         </motion.div>
     );
 }

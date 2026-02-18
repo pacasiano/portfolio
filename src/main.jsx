@@ -7,7 +7,7 @@ import "./index.css";
 import App from "./App";
 
 const client = new ApolloClient({
-  link: new HttpLink({ uri: "https://pacasiano.space/wp-cms/index.php?graphql" }),
+  link: new HttpLink({ uri: "https://cms.pacasiano.space/wp-cms/index.php?graphql" }),
   cache: new InMemoryCache(),
 });
 
