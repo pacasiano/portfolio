@@ -61,7 +61,7 @@ const FooterData = () => {
           <a href="mailto:pacasiano@icloud.com" className="flex items-center gap-2 hover:text-[#7964be] transition">
             <i className="fa fa-envelope" /> Email
           </a>
-          <a href="tel:+639171234567" className="flex items-center gap-2 hover:text-[#7964be] transition">
+          <a href="tel:+63967200981" className="flex items-center gap-2 hover:text-[#7964be] transition">
             <i className="fa fa-phone" /> Phone
           </a>
         </div>
