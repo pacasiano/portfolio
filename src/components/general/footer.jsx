@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
 export default function Footer() {
-  // get current width of the screen
   const [width, setWidth] = useState(window.innerWidth);
   const isMobile = width < 768;
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
+
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
@@ -67,16 +67,16 @@ const FooterData = () => {
             href="mailto:pacasiano@icloud.com"
             className="flex items-center gap-2 transition hover:text-[#9B9DFF]"
           >
-            <i className="fa fa-envelope" />
-            Email
+            <i className="fa-solid fa-envelope" />
+            <span>Email</span>
           </a>
 
           <a
             href="tel:+63967200981"
             className="flex items-center gap-2 transition hover:text-[#9B9DFF]"
           >
-            <i className="fa fa-phone" />
-            Phone
+            <i className="fa-solid fa-phone" />
+            <span>Phone</span>
           </a>
         </div>
       </section>
@@ -90,27 +90,30 @@ const FooterData = () => {
             href="https://linkedin.com/in/pacasiano"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="LinkedIn"
             className="transform transition hover:scale-125 hover:text-[#9B9DFF]"
           >
-            <i className="fa fa-linkedin" />
+            <i className="fa-brands fa-linkedin-in" />
           </a>
 
           <a
             href="https://github.com/pacasiano"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="GitHub"
             className="transform transition hover:scale-125 hover:text-[#9B9DFF]"
           >
-            <i className="fa fa-github" />
+            <i className="fa-brands fa-github" />
           </a>
 
           <a
             href="https://facebook.com/pacasiano"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Facebook"
             className="transform transition hover:scale-125 hover:text-[#9B9DFF]"
           >
-            <i className="fa fa-facebook" />
+            <i className="fa-brands fa-facebook-f" />
           </a>
         </div>
       </section>
