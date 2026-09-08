@@ -1,132 +1,162 @@
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
+const interests = [
+  {
+    title: 'Photography',
+    description:
+      'A way to slow down, notice details, and make something visual away from software.',
+  },
+  {
+    title: 'IoT & Hardware',
+    description:
+      'I enjoy projects where software reaches beyond the screen and interacts with physical systems.',
+  },
+  {
+    title: 'Self-Hosting',
+    description:
+      'Running my own services gives me room to learn deployment, networking, and system maintenance.',
+  },
+];
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 export default function AboutView() {
-
-  const reference = useRef(null);
-  const inView = useInView(reference, { once: false, amount: "some", margin: "-200px" });
-
-  const container = useRef();
+  const container = useRef(null);
   const { scrollYProgress } = useScroll({
-      target: container,
-      offset: ['start end', 'end start']
-  })
-
-  const sm = useTransform(scrollYProgress, [0, 1], [0, 600]);
-  const mainDiv = useTransform(scrollYProgress, [0, 1], [0.9, 1]);
-
-  const skills = [
-    "HTML", "CSS", "JavaScript", "Vue.js",
-    "Tailwind CSS", "React.js", "Next.js",
-    "Laravel", "C++", "Python", "Node.js",
-    "Express.js", "Django", "Wordpress",
-    "PHP", "MySQL", "PostgreSQL", "Git",
-    "Figma", "Lightroom", "Arduino",
-    "Dart", "Flutter"
-  ];
-
-  const workExperience = [
-    { "2024-2025": "Ateneo De Davao Research in Information Systems and Software Engineering Lab Intern" }, 
-    { "2024-2024": "SAMAHAN Systems and Development | Front-end Developer" }
-  ];
-
-  const education = [
-    {"2020-2025": "Ateneo de Davao University"},
-    {"2018-2020": "San Pedro College Davao City"},
-  ];
+    target: container,
+    offset: ['start end', 'end start'],
+  });
+  const glowY = useTransform(scrollYProgress, [0, 1], [-40, 70]);
 
   return (
-    <div ref={container} className="relative w-full min-h-screen flex flex-col pt-36 justify-center items-center overflow-hidden text-white border-2 pb-24">
-
-      {/* Background decorative text */}
-      <motion.span
-        style={{ y: sm }}
-      >
-        <p className="absolute text-[15rem] font-bold text-[#2a2a2a] top-10 left-0 -rotate-12 z-0 select-none pointer-events-none">About</p>
-      </motion.span>
-
-      <motion.span
-        style={{ y: sm }}
-      >
-        <p className="absolute text-[15rem] font-bold text-[#2a2a2a] right-0 bottom-0 -rotate-6 z-0 select-none pointer-events-none">About</p>
-      </motion.span>
-
-      {/* Main container */}
+    <section
+      id="about"
+      ref={container}
+      className="relative w-full overflow-hidden bg-[#111216] px-5 py-28 text-white sm:px-10 lg:py-36"
+    >
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
-          style={{ scale: mainDiv }}
-          ref={reference}
-          className="relative z-10 flex flex-col sm:w-[80%] w-[95%] gap-12"
-        >
-          
-        {/* Personal info + typewriter code */}
+          style={{ y: glowY }}
+          className="absolute -left-44 top-[30%] h-[520px] w-[520px] rounded-full bg-[#7779FF]/[0.035] blur-[160px]"
+        />
+        <div className="absolute inset-x-0 top-0 h-px bg-white/[0.035]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-[1250px]">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-end">
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <span className="text-xs font-semibold uppercase tracking-[0.35em] text-[#829187]">
+              About me
+            </span>
+
+            <h2 className="mt-4 text-4xl font-black leading-[1.08] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+              Developer by profession,
+              <span className="block text-[#B1B2FF]">builder by curiosity.</span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            className="border-l border-white/[0.07] pl-6 lg:pl-8"
+          >
+            <p className="text-sm leading-7 text-[#B4B5BE] sm:text-base">
+              Hey, I&apos;m <span className="font-semibold text-white">Peter Andre Casiano</span>, a
+              Computer Science graduate from Ateneo de Davao University based in Davao City,
+              Philippines.
+            </p>
+
+            <p className="mt-5 text-sm leading-7 text-[#7f8982] sm:text-base">
+              I like understanding software beyond one layer. That curiosity has taken me from
+              frontend and backend development to mobile, IoT, automation, deployment, and
+              self-hosted infrastructure.
+            </p>
+          </motion.div>
+        </div>
+
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-[#1b1b1b] p-8 rounded-xl shadow-lg border border-[#444]"
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-20 border-y border-white/[0.06] py-10 sm:py-12"
         >
-          <p className="text-xl mb-4">Hey, I&apos;m <span className="text-accentDark font-bold">Peter Andre Casiano</span>!</p>
-          <div className="bg-[#111] p-4 rounded-md overflow-x-auto">
-            A Bachelor of Science in Computer Science Graduate from Ateneo de Davao University.{" "}
-          </div>
+          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#829187]">
+            How I think about software
+          </span>
+          <p className="mt-5 max-w-4xl text-xl font-medium leading-9 text-[#D2D3D9] sm:text-2xl sm:leading-10">
+            I like being able to follow software from the interface a user sees, through the
+            backend and data layer, all the way to the infrastructure that keeps it running.
+          </p>
         </motion.div>
 
-        {/* Work Experience */}
         <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-[#1b1b1b] p-6 rounded-xl shadow-lg border border-[#444]"
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-20"
         >
-          <h2 className="text-lg font-semibold text-accentDark mb-3">💼 Experience</h2>
-          <ul className="list-disc list-inside space-y-2">
-            {workExperience.map((job, i) => (
-              <li key={i}>
-                <span className="font-semibold">{Object.keys(job)[0]}</span>: {Object.values(job)[0]}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+          <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[#829187]">
+            Away from the day job
+          </span>
+          <h3 className="mt-3 text-3xl font-bold tracking-[-0.03em] sm:text-4xl">
+            Things I&apos;m curious about.
+          </h3>
 
-        {/* Education */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-[#1b1b1b] p-6 rounded-xl shadow-lg border border-[#444]"
-        >
-          <h2 className="text-lg font-semibold text-accentDark mb-3">🎓 Education</h2>
-          <ul className="list-disc list-inside space-y-2">
-            {education.map((school, i) => (
-              <li key={i}>
-                <span className="font-semibold">{Object.keys(school)[0]}</span>: {Object.values(school)[0]}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-
-        {/* Skills */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="bg-[#1b1b1b] p-6 rounded-xl shadow-lg border border-[#444]"
-        >
-          <h2 className="text-lg font-semibold text-accentDark mb-3">🛠 Skills</h2>
-          <div className="flex flex-wrap gap-2">
-            {skills.map((skill, i) => (
-              <span
-                key={i}
-                className="bg-[#333] px-3 py-1 rounded-full text-sm hover:bg-accentDark hover:text-black transition cursor-default"
+          <div className="mt-9 grid grid-cols-1 border-t border-white/[0.06] md:grid-cols-3">
+            {interests.map((interest, index) => (
+              <motion.div
+                key={interest.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.07 }}
+                className="border-b border-white/[0.06] py-8 md:border-b-0 md:border-r md:px-8 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
               >
-                {skill}
-              </span>
+                <span className="font-mono text-xs text-[#626473]">0{index + 1}</span>
+                <h4 className="mt-4 text-xl font-bold text-white">{interest.title}</h4>
+                <p className="mt-3 text-sm leading-7 text-[#7f8982]">{interest.description}</p>
+              </motion.div>
             ))}
           </div>
         </motion.div>
 
-      </motion.div>
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mt-20 flex flex-col gap-5 border-t border-white/[0.06] pt-9 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <div>
+            <span className="text-xs uppercase tracking-[0.25em] text-[#626473]">Based in</span>
+            <p className="mt-2 font-medium text-[#B4B5BE]">Davao City, Philippines</p>
+          </div>
 
-    </div>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 self-start text-sm font-semibold text-[#B4B5BE] transition hover:text-[#9B9DFF] sm:self-auto"
+          >
+            Get in touch <span>↗</span>
+          </a>
+        </motion.div>
+      </div>
+    </section>
   );
 }

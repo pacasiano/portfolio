@@ -1,140 +1,202 @@
-import { useState, useEffect, useRef } from "react";
-import PropTypes from "prop-types";
-import WorkCard from "../general/WorkCard";
-import { motion, useTransform, useScroll } from "framer-motion";
-import { offline_data } from "../../constants/data";
+import { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
+import WorkCard from '../general/WorkCard';
+import { motion } from 'framer-motion';
+import { supabase } from '../../lib/supabase';
 
-import { gql } from "@apollo/client";
-import { useQuery } from "@apollo/client/react";
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.08,
+    },
+  },
+};
 
-function WorksView({scrollYProgress}) {
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 36,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.65,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
 
-    const [projects, setProjects] = useState([]);
+const projectLayouts = [
+  'lg:col-span-7',
+  'lg:col-span-5',
+  'lg:col-span-5',
+  'lg:col-span-7',
+  'lg:col-span-6',
+  'lg:col-span-6',
+];
 
-    useEffect(() => {
-        const fetchedProjects = offline_data.map((project) => ({
-        title: project.title,
-        description: project.fields.description,
-        image: project.featuredImage.node.sourceUrl,
-        link: project.fields.link,
-        role: project.fields.role,
-        stack: project.fields.stack.split(",").map((tech) => tech.trim()),
-    }));
-        setProjects(fetchedProjects);
-    }, []);
+function WorksView() {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const container = useRef(null);
 
-    const get_projects = gql`
-        query GetProjects {
-            projects{
-                nodes{
-                title
-                featuredImage{
-                    node{
-                    sourceUrl
-                    altText
-                    }
-                }
-                fields{
-                    description
-                    link
-                    role
-                    stack
-                }
-                }
-            }
-        }`;
+  useEffect(() => {
+    const loadProjects = async () => {
+      const { data, error } = await supabase
+        .from('projects')
+        .select('*')
+        .order('created_at', { ascending: false });
 
-    const { loading, data } = useQuery(get_projects);
+      if (error) {
+        console.error('Failed to load projects:', error);
+        setLoading(false);
+        return;
+      }
 
-    console.log();
+      setProjects(
+        (data ?? []).map((row) => ({
+          id: row.id,
+          title: row.title,
+          description: row.description,
+          imageUrls: Array.isArray(row.imageUrls) ? row.imageUrls : [],
+          link: row.link,
+          role: row.role,
+          stack: (row.stack ?? '')
+            .split(',')
+            .map((tech) => tech.trim())
+            .filter(Boolean),
+        }))
+      );
 
-    useEffect(() => {
-        if (data) {
-            const fetchedProjects = data.projects.nodes.map((project) => ({
-                title: project.title,
-                description: project.fields.description,
-                image: project.featuredImage.node.sourceUrl,
-                link: project.fields.link,
-                role: project.fields.role,
-                stack: project.fields.stack.split(",").map((tech) => tech.trim()),
-            }));
-            setProjects(fetchedProjects);
-        }
-    }, [data]);
+      setLoading(false);
+    };
 
-    const [isLgUp, setIsLgUp] = useState(true);
+    loadProjects();
+  }, []);
 
-    useEffect(() => {
-        const checkScreen = () => setIsLgUp(window.innerWidth >= 1024);
-        checkScreen();
-        window.addEventListener("resize", checkScreen);
-        return () => window.removeEventListener("resize", checkScreen);
-    }, []);
+  useEffect(() => {
+    if (window.location.hash.toLowerCase() !== '#works') return;
 
-    const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1]);
-    const rotate = useTransform(scrollYProgress, [0, 1], [5, 0]);
+    requestAnimationFrame(() => {
+      container.current?.scrollIntoView({
+        behavior: 'auto',
+        block: 'start',
+      });
+    });
+  }, []);
 
-    const container = useRef();
+  return (
+    <section
+      id="works"
+      ref={container}
+      className="relative w-full overflow-hidden bg-[#111216] text-white"
+    >
+      {/* Same ambient language as StartView, kept intentionally subtle. */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute left-[12%] top-[8%] h-[520px] w-[520px] rounded-full bg-[#7779FF]/[0.035] blur-[160px]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-white/[0.035]" />
+      </div>
 
-    return (
-        <motion.div ref={container} className="relative w-screen min-h-screen py-36 flex justify-center items-center overflow-hidden mt-52 bg-[#1C1C1C] border-[#444] border-2 rounded-lg"
-            style={{scale: isLgUp ? scale : 1,  rotate: isLgUp ? rotate : 0}}>
-            <WorksText container={container} />
+      <div className="relative z-10 mx-auto max-w-[1450px] px-5 py-28 sm:px-10 lg:px-16 lg:py-36">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-20 max-w-3xl"
+        >
+          <span className="text-xs font-semibold uppercase tracking-[0.35em] text-[#829187]">
+            Selected Work
+          </span>
 
-            {/* horizontal scroll wrapper */}
-            <div className="relative sm:p-10 p-0">
-                <div
-                    className="relative grid lg:grid-cols-2 2xl:grid-cols-3 grid-cols-1 items-center gap-20 no-scrollbar z-10 "
-                >
-                    {projects.map((project, index) => (
-                        <div
-                            key={index}
-                            className={`w-[300px] md:w-[400px] lg:w-[450px] 
-                            ${index % 3 === 1 ? "2xl:mt-36 mt-0" : "2xl:-mt-36 mt-0"}
-                        `}
-                            
-                        >
-                            <div className="transition-transform duration-200">
-                                <WorkCard
-                                    loading={loading}
-                                    title={project.title}
-                                    description={project.description}
-                                    image={project.image}
-                                    link={project.link}
-                                    role={project.role}
-                                    stack={project.stack}
-                                />
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+          <h2 className="mt-4 text-4xl font-black tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
+            Things I&apos;ve built.
+          </h2>
+
+          <p className="mt-6 max-w-xl text-sm leading-7 text-[#7f8982] sm:text-base">
+            Projects across web, mobile, backend, automation, and embedded systems.
+          </p>
         </motion.div>
-    );
+
+        {loading && (
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
+            <ProjectSkeleton className="lg:col-span-7" />
+            <ProjectSkeleton className="lg:col-span-5" />
+            <ProjectSkeleton className="lg:col-span-5" />
+            <ProjectSkeleton className="lg:col-span-7" />
+          </div>
+        )}
+
+        {!loading && (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.02 }}
+            className="grid grid-cols-1 gap-x-10 gap-y-20 lg:grid-cols-12"
+          >
+            {projects.map((project, index) => {
+              const layout = projectLayouts[index % projectLayouts.length];
+              const featured = index % projectLayouts.length === 0 || index % projectLayouts.length === 3;
+
+              return (
+                <motion.div
+                  key={project.id ?? `${project.title}-${index}`}
+                  variants={cardVariants}
+                  className={`w-full ${layout}`}
+                >
+                  <WorkCard
+                    title={project.title}
+                    description={project.description}
+                    imageUrls={project.imageUrls}
+                    link={project.link}
+                    role={project.role}
+                    stack={project.stack}
+                    featured={featured}
+                    projectNumber={index + 1}
+                  />
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        )}
+
+        {!loading && projects.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mt-20 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-white/[0.05] pt-8"
+          >
+            <span className="text-xs uppercase tracking-[0.25em] text-[#626473]">
+              More experiments on
+            </span>
+            <a
+              href="https://github.com/pacasiano"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-[#B4B5BE] transition hover:text-[#9B9DFF]"
+            >
+              GitHub
+              <span className="transition-transform group-hover:translate-x-1">↗</span>
+            </a>
+          </motion.div>
+        )}
+      </div>
+    </section>
+  );
 }
 
-const WorksText = ({container}) => {
+const ProjectSkeleton = ({ className = '' }) => (
+  <div className={`h-[420px] animate-pulse bg-white/[0.025] ${className}`} />
+);
 
-    const { scrollYProgress } = useScroll({
-        target: container,
-        offset: ['start end', 'end start']
-    })
-
-    const sm = useTransform(scrollYProgress, [0, 1], [0, 1000]);
-
-    return (
-        <motion.span style={{ y:sm }} className="absolute text-[60vh] -top-[200px] rotate-6 font-bold text-[#252525] font-sans -z-0 text-nowrap">
-            Works
-        </motion.span>
-    )
-}
-
-WorksText.propTypes = {
-    container: PropTypes.object.isRequired,
-}
-
-WorksView.propTypes = {
-    scrollYProgress: PropTypes.object.isRequired,
+ProjectSkeleton.propTypes = {
+  className: PropTypes.string,
 };
 
 export default WorksView;

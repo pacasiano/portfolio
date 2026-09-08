@@ -1,44 +1,46 @@
-
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 export default function Footer() {
-
   // get current width of the screen
   const [width, setWidth] = useState(window.innerWidth);
   const isMobile = width < 768;
-  
+
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
+
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
     <>
-
-    {isMobile ? (<footer className="relative h-[500px] py-12 px-6 bg-[#1b1b1b]"
-      style={{clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)"}}
-    >
-      <div className='relative h-[calc(100vh+400px)] -top-[100vh]'>
-        <div className={` h-[400px] sticky top-[calc(100vh-450px)] flex flex-col justify-between items-center gap-8 text-white`}>
-          <FooterData />
-        </div>
-      </div>
-    </footer>
-
-    ) : (
-
-    <footer className="relative px-20 h-[200px] py-12 bg-[#1b1b1b]"
-      style={{clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)"}}
-    >
-      <div className='relative h-[calc(100vh+150px)] -top-[100vh]'>
-        <div className={` h-[200px] sticky top-[calc(100vh-200px)] flex flex-row justify-between items-center gap-8 text-white`}>
-          <FooterData />
-        </div>
-      </div>
-    </footer>
-    )}
-
+      {isMobile ? (
+        <footer
+          className="relative h-[500px] bg-[#0B0C10] px-6 py-12"
+          style={{
+            clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)',
+          }}
+        >
+          <div className="relative -top-[100vh] h-[calc(100vh+400px)]">
+            <div className="sticky top-[calc(100vh-450px)] flex h-[400px] flex-col items-center justify-between gap-8 text-white">
+              <FooterData />
+            </div>
+          </div>
+        </footer>
+      ) : (
+        <footer
+          className="relative h-[200px] bg-[#0B0C10] px-20 py-12"
+          style={{
+            clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)',
+          }}
+        >
+          <div className="relative -top-[100vh] h-[calc(100vh+150px)]">
+            <div className="sticky top-[calc(100vh-200px)] flex h-[200px] flex-row items-center justify-between gap-8 text-white">
+              <FooterData />
+            </div>
+          </div>
+        </footer>
+      )}
     </>
   );
 }
@@ -46,42 +48,72 @@ export default function Footer() {
 const FooterData = () => {
   return (
     <>
-      <section className="flex flex-col items-center sm:items-start gap-2">
-        <div className="flex flex-col lg:flex-row items-center sm:items-start">
-          <h2 className="text-3xl font-bold text-accent lg:mr-4">Peter Andre</h2>
-          <h2 className="text-3xl font-bold text-accent">Casiano</h2>
+      <section className="flex flex-col items-center gap-2 sm:items-start">
+        <div className="flex flex-col items-center sm:items-start lg:flex-row">
+          <h2 className="text-3xl font-bold text-[#B4B5BE] lg:mr-4">Peter Andre</h2>
+
+          <h2 className="text-3xl font-bold text-[#B4B5BE]">Casiano</h2>
         </div>
-        <p className="text-gray-300 text-sm md:text-base">Davao City, Philippines</p>
+
+        <p className="text-sm text-[#7f8982] md:text-base">Davao City, Philippines</p>
       </section>
 
       {/* Contact */}
-      <section className="flex flex-col items-center sm:items-start gap-4">
-        <h3 className="font-semibold text-lg">Contact Me</h3>
-        <div className="flex flex-col gap-2 text-gray-300">
-          <a href="mailto:pacasiano@icloud.com" className="flex items-center gap-2 hover:text-[#7964be] transition">
-            <i className="fa fa-envelope" /> Email
+      <section className="flex flex-col items-center gap-4 sm:items-start">
+        <h3 className="text-lg font-semibold text-[#B4B5BE]">Contact Me</h3>
+
+        <div className="flex flex-col gap-2 text-[#7f8982]">
+          <a
+            href="mailto:pacasiano@icloud.com"
+            className="flex items-center gap-2 transition hover:text-[#9B9DFF]"
+          >
+            <i className="fa fa-envelope" />
+            Email
           </a>
-          <a href="tel:+63967200981" className="flex items-center gap-2 hover:text-[#7964be] transition">
-            <i className="fa fa-phone" /> Phone
+
+          <a
+            href="tel:+63967200981"
+            className="flex items-center gap-2 transition hover:text-[#9B9DFF]"
+          >
+            <i className="fa fa-phone" />
+            Phone
           </a>
         </div>
       </section>
 
       {/* Socials */}
-      <section className="flex flex-col items-center md:items-start gap-4">
-        <h3 className="font-semibold text-lg">Follow Me</h3>
-        <div className="flex gap-4 text-gray-300 text-2xl">
-          <a href="https://linkedin.com/in/pacasiano" target="_blank" rel="noopener noreferrer" className="hover:text-[#7964be] transition transform hover:scale-125">
+      <section className="flex flex-col items-center gap-4 md:items-start">
+        <h3 className="text-lg font-semibold text-[#B4B5BE]">Follow Me</h3>
+
+        <div className="flex gap-4 text-2xl text-[#626473]">
+          <a
+            href="https://linkedin.com/in/pacasiano"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transform transition hover:scale-125 hover:text-[#9B9DFF]"
+          >
             <i className="fa fa-linkedin" />
           </a>
-          <a href="https://github.com/pacasiano" target="_blank" rel="noopener noreferrer" className="hover:text-[#7964be] transition transform hover:scale-125">
+
+          <a
+            href="https://github.com/pacasiano"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transform transition hover:scale-125 hover:text-[#9B9DFF]"
+          >
             <i className="fa fa-github" />
           </a>
-          <a href="https://facebook.com/pacasiano" target="_blank" rel="noopener noreferrer" className="hover:text-[#7964be] transition transform hover:scale-125">
+
+          <a
+            href="https://facebook.com/pacasiano"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transform transition hover:scale-125 hover:text-[#9B9DFF]"
+          >
             <i className="fa fa-facebook" />
           </a>
         </div>
       </section>
     </>
-  )
-}
+  );
+};
