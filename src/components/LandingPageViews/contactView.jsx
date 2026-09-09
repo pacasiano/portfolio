@@ -42,11 +42,17 @@ export default function ContactView() {
     setSending(true);
 
     try {
-      const res = await fetch('https://n8n.pacasiano.space/webhook/v1/message', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch(
+        'https://yfolcfbmwqgbthgzbwot.supabase.co/functions/v1/capture-message',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify(form),
+        }
+      );
 
       if (res.ok) {
         setForm({ name: '', email: '', message: '' });
@@ -101,12 +107,12 @@ export default function ContactView() {
             </span>
 
             <h2 className="mt-4 text-4xl font-black tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
-              Send me a
-              <span className="block text-[#B1B2FF]">message.</span>
+              Send me a<span className="block text-[#B1B2FF]">message.</span>
             </h2>
 
             <p className="mt-7 max-w-md text-sm leading-7 text-[#7f8982] sm:text-base">
-              Have a project, opportunity, question, or just want to say hello? Feel free to reach out.
+              Have a project, opportunity, question, or just want to say hello? Feel free to reach
+              out.
             </p>
 
             <a
@@ -246,7 +252,9 @@ export default function ContactView() {
 
 const Field = ({ label, children }) => (
   <label className="block">
-    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#829187]">{label}</span>
+    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#829187]">
+      {label}
+    </span>
     {children}
   </label>
 );

@@ -4,11 +4,11 @@ import { useScroll } from 'framer-motion';
 
 import StartView from '../components/LandingPageViews/startView';
 import WorksView from '../components/LandingPageViews/worksView';
-import CaseStudyView from '../components/LandingPageViews/caseStudyView';
+// import CaseStudyView from '../components/LandingPageViews/caseStudyView';
 import ExperienceView from '../components/LandingPageViews/experienceView';
 import AboutView from '../components/LandingPageViews/aboutView';
 import ContactView from '../components/LandingPageViews/contactView';
-import CapabilitiesView from '../components/LandingPageViews/capabilitiesView';
+// import CapabilitiesView from '../components/LandingPageViews/capabilitiesView';
 
 function LandingPage() {
   const location = useLocation();
@@ -39,17 +39,17 @@ function LandingPage() {
         </div>
       </div>
 
-      <div id="case-study">
+      {/* <div id="case-study">
         <CaseStudyView scrollYProgress={scrollYProgress} />
-      </div>
+      </div> */}
 
       <div id="experience">
         <ExperienceView scrollYProgress={scrollYProgress} />
       </div>
 
-      <div id="capabilities">
+      {/* <div id="capabilities">
         <CapabilitiesView scrollYProgress={scrollYProgress} />
-      </div>
+      </div> */}
 
       <div id="about">
         <AboutView scrollYProgress={scrollYProgress} />
